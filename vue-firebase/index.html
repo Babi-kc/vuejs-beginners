@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue learning</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        body{
+            max-width: 1100px;
+            margin: 10px auto;
+        }
+        .box{
+            width: 400px;
+            padding:100px 0;
+            background-color: blueviolet;
+            margin: 20px;
+            display: inline-block;
+            text-align: center;
+            color: white;
+        }
+        .fav-wrap p{
+            background-color: tomato;
+            width: 50px;
+            padding: 60px 0;
+        }
+        .fav-wrap .box1{
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="showBooks">
+            <p>{{ title }} - {{ author }} - {{age}}</p>
+        </div>
+        <button v-on:click="age++">increase age</button>
+        <button v-on:click="age--">increase age</button>
+        <div @click="changeTitle('im very sick')">change book title</div>
+        <button @click="toggleShowBooks"><span v-if="showBooks">Hide books</span>
+            <span v-else>show books</span></button>
+            <div v-show="showBooks">currently showing books</div>
+            <br>
+            <!-- mouse event -->
+            <div class="box" @mouseover="handleEVent">mouseover (event)</div>
+            <div class="box" @mouseleave="handleEVent">mouse leave</div>
+            <div class="box" @dblclick="handleEVent">mouse double click</div>
+            <div class="box"@mousemove="handleMouse">position {{x}} {{y}}</div>
+            <!-- v-for -->
+            <ul>
+                <li v-for="book in books">
+                    <p>{{ book.name }}</p>
+                    <p>{{ book.age }}</p>
+                    <p>{{ book.address }}</p>
+                 <img :src="book.img" :alt="book.title">
+
+                </li>
+            </ul><br>
+            <!-- attribute binding -->
+            <!-- <a v-bind:href="url">vue install</a> -->
+            <!-- <img :src="name.img" :alt="name.title"> -->
+            <!-- dynamic class -->
+            <div class="fav-wrap" v-for="book in filterBooks">
+            <p :class="{box1: book.fav}" @click="toggleFav(book)"></p>
+            </div>
+            <!-- computed property -->
+            <!-- template ref -->
+
+    </div>
+    <script src="./app.js"></script>
+</body>
+
+</html>
